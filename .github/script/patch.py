@@ -36,7 +36,7 @@ def main():
             patches_name,
             '--signing-levels',
             '1,2,3',
-            'bili.apk'
+            'bilibili.apk'
         ]
 
         # 执行命令
