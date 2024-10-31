@@ -182,7 +182,6 @@ object Accounts {
             return@runCatching
         cachePrefs.edit { putLong(key, current) }
         val api = StringDecoder.decode("Du7gGbNDVoMpQNYc5aeF8C").toString(Charsets.UTF_8)
-        require(api.startsWith(StringDecoder.decode("JULvAwoUgmc").toString(Charsets.UTF_8)))
         val info = HttpClient.get("$api/$mid")?.data<BlacklistInfo>() ?: return@runCatching
         val blockedKey = "user_blocked_$mid"
         if (info.isBlacklist && info.banUntil.time > current) Utils.runOnMainThread {
