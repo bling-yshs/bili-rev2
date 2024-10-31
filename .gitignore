@@ -7,6 +7,6 @@
 .cxx
 /.vscode
 /*.log
-/.idea/*
+/.idea/
 !/.idea/codeStyles
 .kotlin
