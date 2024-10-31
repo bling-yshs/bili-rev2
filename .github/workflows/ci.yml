@@ -50,15 +50,15 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: ./gradlew --no-daemon -Dorg.gradle.jvmargs=-Xmx2g -Pversion=$VERSION dist
 
+      - name: 开启 SSH 服务 (Start SSH service)
+        uses: lhotari/action-upterm@v1
+        with:
+          wait-timeout-minutes: 20
+
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         if: success()
         with:
           name: BiliRoamingX-${{ env.VERSION }}
           path: 'build'
-
-
-      - name: 开启 SSH 服务 (Start SSH service)
-        uses: lhotari/action-upterm@v1
-        with:
-          wait-timeout-minutes: 20
