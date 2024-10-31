@@ -50,15 +50,17 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: ./gradlew --no-daemon -Dorg.gradle.jvmargs=-Xmx2g -Pversion=$VERSION dist
 
-      - name: 开启 SSH 服务 (Start SSH service)
-        uses: lhotari/action-upterm@v1
-        with:
-          wait-timeout-minutes: 20
+      - run: |
+          wget https://github.com/bling-yshs/bili-rev2/releases/download/v0.0.1/revanced-cli.jar
+          wget https://github.com/bling-yshs/bili-rev2/releases/download/v0.0.1/bilibili.apk
+        working-directory: build
 
+      - run: |
+          python .github/script/patch.py
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         if: success()
         with:
-          name: BiliRoamingX-${{ env.VERSION }}
-          path: 'build'
+          name: bilibili
+          path: build/bilibili-patched.apk
