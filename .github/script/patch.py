@@ -4,7 +4,7 @@ import subprocess
 
 def find_file_with_pattern(pattern):
     # 在build文件夹中查找匹配模式的文件
-    matches = glob.glob(os.path.join('./build', pattern))
+    matches = glob.glob(pattern)
     return matches[0] if matches else None
 
 def main():
